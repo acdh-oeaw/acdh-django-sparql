@@ -1,0 +1,41 @@
+{% extends "webpage/base.html" %}
+{% block title %} SPARQL {% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 style="text-align:center">SPARQL Endpoint</h1>
+        {% if examples %}
+            <div id="examples">
+                <h3>Example queries</h3>
+                <hr/>
+                {% for x in examples %}
+                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#see-example-{{ x.id }}" id="see-example-btn-{{ x.id }}">
+                        {{ x.title }}
+                    </button>
+                    <div id="see-example-{{ x.id }}" class="collapse">
+                        <h5>{{ x.title }}: {{ x.description }}</h5>
+                        <code>{{ x.query }}</code>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div id="yasgui" style="padding: 2px;"></div>
+        <link href="https://cdn.jsdelivr.net/npm/yasgui@2.7.19/dist/yasgui.min.css" rel="stylesheet" type="text/css">
+        <style>
+            .yasgui .endpointText {display:none !important;}
+            .controlbar {display:none !important;}
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/yasgui@2.7.19/dist/yasgui.min.js"></script>
+        <script type="text/javascript">
+            var yasgui = YASGUI(document.getElementById("yasgui"), {
+                yasqe: {
+                    sparql: {
+                        showQueryButton: true,
+                        endpoint: "{% url 'sparql:tunnel' %}",
+                        requestMethod: 'GET'
+                    }
+                }
+              });
+        </script>
+    </div>
+{% endblock %}
