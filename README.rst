@@ -5,13 +5,13 @@ acdh-django-sparql
 .. image:: https://badge.fury.io/py/acdh-django-sparql.svg
     :target: https://badge.fury.io/py/acdh-django-sparql
 
-Django-App providing a query interface and proxy for any common triple store.
+Django-App providing a query interface and proxy for any common Triplestore.
 
 
 Quickstart
 ----------
 
-Install django_charts::
+Install acdh-django-sparql:
 
     pip install acdh-django-sparql
 
@@ -36,7 +36,7 @@ Add django_sparql's URL patterns:
     ]
 
 
-Provide the endpoint and optional some log-in credentials for your tripple store in some settings file:
+Provide the endpoint and optional some log-in credentials for your Triplestore in some settings file:
 
 .. code-block:: python
 
