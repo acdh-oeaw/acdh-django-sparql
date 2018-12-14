@@ -35,7 +35,7 @@ setup(
     ],
     install_requires=[
         'Django>=2.0',
-        'SPARQLWrapper==1.8.2',
         'rdflib>=4.0',
+        'SPARQLWrapper==1.8.2',
     ],
 )

@@ -1,46 +1,55 @@
-Readme
-======
+=============================
+acdh-django-sparql
+=============================
+
+.. image:: https://badge.fury.io/py/acdh-django-sparql.svg
+    :target: https://badge.fury.io/py/acdh-django-sparql
+
+Django-App providing a query interface and proxy for any common triple store.
 
 
-Installation
-------------
+Quickstart
+----------
+
+Install django_charts::
+
+    pip install acdh-django-sparql
+
+Add it to your `INSTALLED_APPS`:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'sparql',
+        ...
+    )
+
+Add django_sparql's URL patterns:
+
+.. code-block:: python
+
+    urlpatterns = [
+        ...
+        url(r'^sparql/', include('sparql.urls', namespace='sparql')),
+        ...
+    ]
 
 
+Provide the endpoint and optional some log-in credentials for your tripple store in some settings file:
+
+.. code-block:: python
+
+    BG_URL = "https://path-to-your-triple-store/sparql"
+    BG_USER = "username"
+    BG_PW = "password"
+
+
+browse to https://my-project/sparql/query/ to reach the query interface
+
+Via the django-admin interface you can create sample queries.
 
 Licensing
 ---------
 
 All code unless otherwise noted is licensed under the terms of the MIT License (MIT). Please refer to the file LICENSE in the root directory of this repository.
-
-
-Install the package
-------------
-
-`pip install acdh-django-sparql`
-
-# mandatory:
-
-## add `sparql` to `INSTALLED_APPS`
-
-```
-...
-'apis_core.apis_entities',
-'apis_core.apis_metainfo',
-'apis_core.apis_relations',
-'apis_core.apis_vocabularies',
-'apis_core.apis_labels',
-...
-```
-
-## add apis specific context_processors
-
-```
-'OPTIONS': {
-    'context_processors': [
-        ...
-        'webpage.webpage_content_processors.is_dev_version',
-        'apis_core.context_processors.custom_context_processors.add_entities',
-        ...
-    ],
-},
-```
